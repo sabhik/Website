@@ -52,9 +52,23 @@
 <svg viewBox="0 0 9.5 6.5" overflow="visible" id="svg782583697_282"><path d="M 0 3.5 L 3 6.5 L 9.5 0" fill="transparent" stroke-width="6" stroke="rgb(119, 119, 119)" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </div>
     
+<script>
+(function enforceTitle(title){
+  const apply = () => { if (document.title !== title) document.title = title; };
+  // set now, then keep it if other scripts try to change it
+  apply();
+  window.addEventListener('load', apply);
+  document.addEventListener('visibilitychange', apply);
+  new MutationObserver(apply).observe(
+    document.head,
+    { childList: true, subtree: true, characterData: true }
+  );
+})('Abhik Sarkar | Portfolio');
+</script>
     
     
 </body>
 </html>
+
 
 
